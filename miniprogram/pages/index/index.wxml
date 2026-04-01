@@ -1,0 +1,121 @@
+<!--pages/index/index.wxml-->
+<view class="page">
+  <!-- 顶部欢迎区 -->
+  <view class="hero-section">
+    <view class="hero-bg"></view>
+    <view class="hero-content">
+      <text class="hero-title">山野周末</text>
+      <text class="hero-subtitle">探索自然，遇见更好的自己</text>
+    </view>
+  </view>
+
+  <!-- 本周推荐路线 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">🏔️ 本周推荐</text>
+      <text class="section-more" bindtap="goToRoutes">更多 →</text>
+    </view>
+    
+    <view class="route-card" wx:if="{{recommendRoute}}" bindtap="goToRouteDetail" data-id="{{recommendRoute.id}}">
+      <view class="route-image-wrap">
+        <image class="route-image" src="{{recommendRoute.coverImage}}" mode="aspectFill"></image>
+        <view class="route-tag tag-primary">{{recommendRoute.season}}</view>
+      </view>
+      <view class="route-info">
+        <text class="route-name">{{recommendRoute.name}}</text>
+        <view class="route-stats">
+          <text class="stat-item">📏 {{recommendRoute.distance}}km</text>
+          <text class="stat-item">⬆️ {{recommendRoute.elevation}}m</text>
+          <text class="stat-item">⏱️ {{recommendRoute.duration}}h</text>
+        </view>
+        <view class="route-difficulty">
+          <text class="difficulty-label">难度</text>
+          <view class="difficulty-bar">
+            <view class="difficulty-segment {{index < recommendRoute.difficultyLevel ? 'active' : ''}}" wx:for="{{5}}" wx:key="index"></view>
+          </view>
+          <text class="difficulty-text">{{recommendRoute.difficulty}}%</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日天气 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">🌤️ 今日天气</text>
+    </view>
+    
+    <view class="weather-card" bindtap="goToWeather">
+      <view class="weather-main">
+        <image class="weather-icon" src="{{weather.icon}}" mode="aspectFit"></image>
+        <text class="weather-temp">{{weather.temp}}°</text>
+        <text class="weather-desc">{{weather.condition}}</text>
+      </view>
+      <view class="weather-details">
+        <view class="weather-item">
+          <text class="weather-label">体感</text>
+          <text class="weather-value">{{weather.feelsLike}}°</text>
+        </view>
+        <view class="weather-item">
+          <text class="weather-label">湿度</text>
+          <text class="weather-value">{{weather.humidity}}%</text>
+        </view>
+        <view class="weather-item">
+          <text class="weather-label">紫外线</text>
+          <text class="weather-value">{{weather.uvIndex}}</text>
+        </view>
+        <view class="weather-item">
+          <text class="weather-label">能见度</text>
+          <text class="weather-value">{{weather.visibility}}km</text>
+        </view>
+      </view>
+      <view class="weather-hint" wx:if="{{weather.hint}}">
+        <text>{{weather.hint}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 我的足迹 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">🥾 我的足迹</text>
+    </view>
+    
+    <view class="stats-grid">
+      <view class="stat-card">
+        <text class="stat-number">{{userStats.totalRoutes}}</text>
+        <text class="stat-label">完成路线</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-number">{{userStats.totalDistance}}</text>
+        <text class="stat-label">总里程(km)</text>
+      </view>
+      <view class="stat-card">
+        <text class="stat-number">{{userStats.totalElevation}}</text>
+        <text class="stat-label">累计爬升(m)</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="section">
+    <view class="quick-actions">
+      <view class="action-item" bindtap="goToRoutes">
+        <view class="action-icon">🗺️</view>
+        <text class="action-text">全部路线</text>
+      </view>
+      <view class="action-item" bindtap="goToHistory">
+        <view class="action-icon">📜</view>
+        <text class="action-text">历史记录</text>
+      </view>
+      <view class="action-item" bindtap="goToFavorites">
+        <view class="action-icon">❤️</view>
+        <text class="action-text">我的收藏</text>
+      </view>
+      <view class="action-item" bindtap="goToProfile">
+        <view class="action-icon">⚙️</view>
+        <text class="action-text">设置</text>
+      </view>
+    </view>
+  </view>
+</view>

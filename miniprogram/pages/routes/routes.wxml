@@ -1,0 +1,63 @@
+<!--pages/routes/routes.wxml-->
+<view class="page">
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <picker mode="selector" range="{{difficultyOptions}}" bindchange="onDifficultyChange">
+      <view class="filter-item">
+        <text>{{difficultyOptions[difficultyIndex]}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{durationOptions}}" bindchange="onDurationChange">
+      <view class="filter-item">
+        <text>{{durationOptions[durationIndex]}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{seasonOptions}}" bindchange="onSeasonChange">
+      <view class="filter-item">
+        <text>{{seasonOptions[seasonIndex]}}</text>
+        <text class="filter-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 路线列表 -->
+  <view class="route-list">
+    <view class="route-item" wx:for="{{routes}}" wx:key="id" bindtap="goToDetail" data-id="{{item.id}}">
+      <image class="route-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+      <view class="route-content">
+        <view class="route-header">
+          <text class="route-name">{{item.name}}</text>
+          <view class="route-tags">
+            <text class="tag tag-primary" wx:if="{{item.isHot}}">🔥 热门</text>
+            <text class="tag tag-success" wx:if="{{item.isNew}}">新路线</text>
+          </view>
+        </view>
+        <view class="route-meta">
+          <text class="meta-item">📏 {{item.distance}}km</text>
+          <text class="meta-item">⬆️ {{item.elevation}}m</text>
+          <text class="meta-item">⏱️ {{item.duration}}h</text>
+        </view>
+        <view class="route-footer">
+          <view class="difficulty">
+            <text class="difficulty-label">难度</text>
+            <view class="difficulty-bar">
+              <view class="difficulty-segment {{index < item.difficultyLevel ? 'active' : ''}} {{item.difficultyLevel >= 4 ? 'high' : ''}}" 
+                    wx:for="{{5}}" wx:key="index"></view>
+            </view>
+          </view>
+          <text class="route-rating" wx:if="{{item.rating}}">⭐ {{item.rating}}</text>
+        </view>
+        <text class="route-desc">{{item.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{routes.length === 0}}">
+    <text class="empty-icon">🏔️</text>
+    <text class="empty-text">暂无符合条件的路线</text>
+    <text class="empty-hint">试试调整筛选条件</text>
+  </view>
+</view>

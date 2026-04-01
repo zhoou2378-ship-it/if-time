@@ -1,0 +1,124 @@
+<!--pages/tracking/tracking.wxml-->
+<view class="page">
+  <!-- 地图区域 -->
+  <map 
+    id="trackingMap"
+    class="tracking-map"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    polyline="{{polyline}}"
+    show-location="{{true}}"
+    bindregionchange="onRegionChange"
+  >
+    <!-- 地图控件 -->
+    <cover-view class="map-controls">
+      <cover-view class="control-btn" bindtap="centerLocation">
+        <cover-image src="/images/icons/location.png" class="control-icon"/>
+      </cover-view>
+      <cover-view class="control-btn" bindtap="toggleMapType">
+        <cover-image src="/images/icons/layers.png" class="control-icon"/>
+      </cover-view>
+    </cover-view>
+  </map>
+
+  <!-- 顶部状态栏 -->
+  <view class="status-bar">
+    <view class="status-item">
+      <text class="status-value">{{formatDistance(stats.distance)}}</text>
+      <text class="status-label">公里</text>
+    </view>
+    <view class="status-divider"></view>
+    <view class="status-item">
+      <text class="status-value">{{stats.elevation}}</text>
+      <text class="status-label">爬升(米)</text>
+    </view>
+    <view class="status-divider"></view>
+    <view class="status-item">
+      <text class="status-value">{{formatDuration(stats.duration)}}</text>
+      <text class="status-label">时长</text>
+    </view>
+  </view>
+
+  <!-- 实时数据面板 -->
+  <view class="data-panel {{isExpanded ? 'expanded' : ''}}" bindtap="togglePanel">
+    <view class="panel-header">
+      <text class="panel-title">实时数据</text>
+      <text class="panel-toggle">{{isExpanded ? '收起' : '展开'}}</text>
+    </view>
+    
+    <view class="data-grid">
+      <view class="data-item">
+        <text class="data-value">{{stats.currentPace}}'</text>
+        <text class="data-label">当前配速</text>
+      </view>
+      <view class="data-item">
+        <text class="data-value">{{stats.avgPace}}'</text>
+        <text class="data-label">平均配速</text>
+      </view>
+      <view class="data-item">
+        <text class="data-value">{{stats.speed}}</text>
+        <text class="data-label">速度(km/h)</text>
+      </view>
+      <view class="data-item">
+        <text class="data-value">{{stats.altitude}}</text>
+        <text class="data-label">海拔(米)</text>
+      </view>
+      <view class="data-item">
+        <text class="data-value">{{stats.calories}}</text>
+        <text class="data-label">消耗(千卡)</text>
+      </view>
+      <view class="data-item">
+        <text class="data-value">{{stats.steps}}</text>
+        <text class="data-label">步数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部控制栏 -->
+  <view class="control-bar">
+    <view class="control-left">
+      <view class="lock-btn {{isLocked ? 'locked' : ''}}" bindtap="toggleLock">
+        <text>{{isLocked ? '🔒' : '🔓'}}</text>
+        <text class="lock-text">{{isLocked ? '已锁定' : '解锁'}}</text>
+      </view>
+    </view>
+    
+    <view class="control-center">
+      <view class="main-btn {{isTracking ? 'tracking' : ''}}" bindtap="toggleTracking">
+        <view class="btn-inner">
+          <text class="btn-text">{{isTracking ? '暂停' : '开始'}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="control-right">
+      <view class="photo-btn" bindtap="takePhoto">
+        <text>📷</text>
+        <text class="photo-text">拍照</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结束确认弹窗 -->
+  <view class="modal-overlay" wx:if="{{showEndModal}}" bindtap="hideEndModal">
+    <view class="modal-content" catchtap="preventBubble">
+      <text class="modal-title">结束本次徒步？</text>
+      <view class="modal-stats">
+        <view class="modal-stat">
+          <text class="modal-value">{{formatDistance(stats.distance)}} km</text>
+          <text class="modal-label">总里程</text>
+        </view>
+        <view class="modal-stat">
+          <text class="modal-value">{{formatDuration(stats.duration)}}</text>
+          <text class="modal-label">运动时长</text>
+        </view>
+      </view>
+      <view class="modal-actions">
+        <view class="modal-btn cancel" bindtap="hideEndModal">继续徒步</view>
+        <view class="modal-btn confirm" bindtap="endTracking">保存并结束</view>
+      </view>
+    </view>
+  </view>
+</view>

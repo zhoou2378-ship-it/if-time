@@ -1,0 +1,5 @@
+<!-- layers icon -->
+<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <path d="M24 8 L40 18 L24 28 L8 18 Z" fill="#2D5A27"/>
+  <path d="M24 20 L40 30 L24 40 L8 30 Z" fill="#2D5A27" opacity="0.6"/>
+</svg>

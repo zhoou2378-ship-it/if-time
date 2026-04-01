@@ -1,0 +1,258 @@
+/* pages/index/index.wxss */
+
+.page {
+  min-height: 100vh;
+  background: var(--bg-color);
+  padding-bottom: 120rpx;
+}
+
+/* 顶部英雄区 */
+.hero-section {
+  position: relative;
+  height: 400rpx;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48rpx;
+}
+
+.hero-title {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.hero-subtitle {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 2rpx;
+}
+
+/* 区块 */
+.section {
+  padding: 32rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: var(--primary-color);
+}
+
+/* 路线卡片 */
+.route-card {
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.route-image-wrap {
+  position: relative;
+  height: 320rpx;
+}
+
+.route-image {
+  width: 100%;
+  height: 100%;
+}
+
+.route-tag {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  padding: 8rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  background: rgba(45, 90, 39, 0.9);
+  color: #fff;
+}
+
+.route-info {
+  padding: 28rpx;
+}
+
+.route-name {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 16rpx;
+}
+
+.route-stats {
+  display: flex;
+  gap: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.stat-item {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.route-difficulty {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.difficulty-label {
+  font-size: 26rpx;
+  color: var(--text-secondary);
+}
+
+.difficulty-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-left: auto;
+}
+
+/* 天气卡片 */
+.weather-card {
+  background: linear-gradient(135deg, #4A90D9 0%, #67B8F0 100%);
+  border-radius: 24rpx;
+  padding: 32rpx;
+  color: #fff;
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 28rpx;
+}
+
+.weather-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.weather-temp {
+  font-size: 72rpx;
+  font-weight: 300;
+}
+
+.weather-desc {
+  font-size: 30rpx;
+  opacity: 0.9;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16rpx;
+  padding: 24rpx 0;
+  border-top: 1rpx solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1rpx solid rgba(255, 255, 255, 0.2);
+}
+
+.weather-item {
+  text-align: center;
+}
+
+.weather-label {
+  display: block;
+  font-size: 24rpx;
+  opacity: 0.7;
+  margin-bottom: 8rpx;
+}
+
+.weather-value {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.weather-hint {
+  margin-top: 24rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  opacity: 0.95;
+}
+
+/* 统计卡片 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 32rpx 20rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.stat-number {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+/* 快捷入口 */
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24rpx;
+}
+
+.action-item {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx 16rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.action-icon {
+  font-size: 48rpx;
+  margin-bottom: 12rpx;
+}
+
+.action-text {
+  font-size: 24rpx;
+  color: var(--text-primary);
+}

@@ -1,0 +1,6 @@
+<!-- partly cloudy -->
+<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="35" cy="35" r="18" fill="#FFD700"/>
+  <ellipse cx="60" cy="55" rx="28" ry="18" fill="#E8E8E8"/>
+  <ellipse cx="45" cy="58" rx="22" ry="15" fill="#F0F0F0"/>
+</svg>

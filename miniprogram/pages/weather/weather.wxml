@@ -1,0 +1,98 @@
+<!--pages/weather/weather.wxml-->
+<view class="page">
+  <!-- 当前天气 -->
+  <view class="weather-main">
+    <view class="weather-location">
+      <text class="location-icon">📍</text>
+      <text class="location-text">{{location}}</text>
+    </view>
+    
+    <view class="weather-display">
+      <image class="weather-icon" src="{{currentWeather.icon}}" mode="aspectFit"></image>
+      <text class="weather-temp">{{currentWeather.temp}}°</text>
+    </view>
+    
+    <text class="weather-condition">{{currentWeather.condition}}</text>
+    <text class="weather-feels">体感温度 {{currentWeather.feelsLike}}°</text>
+  </view>
+
+  <!-- 详细指标 -->
+  <view class="metrics-grid card">
+    <view class="metric-item">
+      <text class="metric-icon">💧</text>
+      <text class="metric-value">{{currentWeather.humidity}}%</text>
+      <text class="metric-label">湿度</text>
+    </view>
+    <view class="metric-item">
+      <text class="metric-icon">☀️</text>
+      <text class="metric-value">{{currentWeather.uvIndex}}</text>
+      <text class="metric-label">紫外线</text>
+    </view>
+    <view class="metric-item">
+      <text class="metric-icon">👁️</text>
+      <text class="metric-value">{{currentWeather.visibility}}km</text>
+      <text class="metric-label">能见度</text>
+    </view>
+    <view class="metric-item">
+      <text class="metric-icon">💨</text>
+      <text class="metric-value">{{currentWeather.windSpeed}}m/s</text>
+      <text class="metric-label">风速</text>
+    </view>
+  </view>
+
+  <!-- 徒步建议 -->
+  <view class="section card">
+    <text class="section-title">🥾 今日徒步建议</text>
+    
+    <view class="suggestion-card {{hikingAdvice.level}}">
+      <view class="suggestion-header">
+        <text class="suggestion-level">{{hikingAdvice.levelText}}</text>
+        <text class="suggestion-temp">{{currentWeather.temp}}°</text>
+      </view>
+      <text class="suggestion-text">{{hikingAdvice.text}}</text>
+    </view>
+    
+    <view class="gear-list">
+      <text class="gear-title">🎒 建议装备</text>
+      <view class="gear-item" wx:for="{{hikingAdvice.gear}}" wx:key="*this">
+        <text class="gear-bullet">•</text>
+        <text class="gear-text">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未来天气预报 -->
+  <view class="section card">
+    <text class="section-title">📅 未来7天</text>
+    
+    <view class="forecast-list">
+      <view class="forecast-item" wx:for="{{forecast}}" wx:key="date">
+        <text class="forecast-date">{{item.dateText}}</text>
+        <image class="forecast-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="forecast-temps">
+          <text class="forecast-high">{{item.high}}°</text>
+          <text class="forecast-low">{{item.low}}°</text>
+        </view>
+        <view class="forecast-hiking" wx:if="{{item.isGoodForHiking}}">
+          <text class="hiking-tag">适合徒步</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空气质量 -->
+  <view class="section card">
+    <text class="section-title">🌬️ 空气质量</text>
+    
+    <view class="aqi-display">
+      <view class="aqi-circle {{aqi.level}}">
+        <text class="aqi-value">{{aqi.value}}</text>
+        <text class="aqi-label">{{aqi.levelText}}</text>
+      </view>
+      <view class="aqi-info">
+        <text class="aqi-text">{{aqi.text}}</text>
+        <text class="aqi-advice">{{aqi.advice}}</text>
+      </view>
+    </view>
+  </view>
+</view>

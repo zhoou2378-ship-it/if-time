@@ -1,0 +1,154 @@
+/* app.wxss - 全局样式 */
+
+/* 主题色 */
+page {
+  --primary-color: #2D5A27;
+  --primary-light: #4A7C41;
+  --primary-dark: #1E3D1A;
+  --accent-color: #F5A623;
+  --bg-color: #F8F9FA;
+  --text-primary: #1A1A1A;
+  --text-secondary: #666666;
+  --text-hint: #999999;
+  --border-color: #E5E5E5;
+  --success-color: #4CAF50;
+  --warning-color: #FF9800;
+  --danger-color: #F44336;
+  
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: var(--text-primary);
+  background-color: var(--bg-color);
+}
+
+/* 通用容器 */
+.container {
+  padding: 32rpx;
+}
+
+/* 卡片样式 */
+.card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* 按钮样式 */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: #fff;
+  border-radius: 48rpx;
+  padding: 24rpx 48rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(45, 90, 39, 0.3);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 12rpx rgba(45, 90, 39, 0.2);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: var(--primary-color);
+  border: 2rpx solid var(--primary-color);
+  border-radius: 48rpx;
+  padding: 22rpx 46rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-block;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  margin-right: 12rpx;
+}
+
+.tag-primary {
+  background: rgba(45, 90, 39, 0.1);
+  color: var(--primary-color);
+}
+
+.tag-warning {
+  background: rgba(245, 166, 35, 0.15);
+  color: var(--accent-color);
+}
+
+.tag-success {
+  background: rgba(76, 175, 80, 0.1);
+  color: var(--success-color);
+}
+
+/* 难度指示器 */
+.difficulty-bar {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.difficulty-segment {
+  width: 24rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+  background: var(--border-color);
+}
+
+.difficulty-segment.active {
+  background: var(--primary-color);
+}
+
+.difficulty-segment.active.high {
+  background: var(--accent-color);
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 40rpx;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  color: var(--text-hint);
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: var(--text-secondary);
+}
+
+/* 加载状态 */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 48rpx;
+}
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background: var(--border-color);
+  margin: 24rpx 0;
+}

@@ -1,0 +1,6 @@
+<!-- route active -->
+<svg width="48" height="48" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 40 Q8 8 24 8 Q40 8 40 24 Q40 40 24 40 Q16 40 16 32" fill="none" stroke="#2D5A27" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="24" cy="8" r="3" fill="#2D5A27"/>
+  <circle cx="24" cy="40" r="3" fill="#2D5A27"/>
+</svg>

@@ -1,0 +1,122 @@
+<!--pages/route-detail/route-detail.wxml-->
+<view class="page">
+  <!-- 头部图片 -->
+  <view class="header">
+    <image class="header-image" src="{{route.coverImage}}" mode="aspectFill"></image>
+    <view class="header-overlay"></view>
+    <view class="header-content">
+      <text class="route-name">{{route.name}}</text>
+      <view class="route-tags">
+        <text class="tag tag-primary">{{route.season}}</text>
+        <text class="tag tag-warning" wx:if="{{route.difficultyLevel >= 4}}">高强度</text>
+      </view>
+    </view>
+    <view class="back-btn" bindtap="goBack">←</view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="section card">
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-value">{{route.distance}} km</text>
+        <text class="info-label">总里程</text>
+      </view>
+      <view class="info-item">
+        <text class="info-value">{{route.elevation}} m</text>
+        <text class="info-label">累计爬升</text>
+      </view>
+      <view class="info-item">
+        <text class="info-value">{{route.duration}} h</text>
+        <text class="info-label">预计用时</text>
+      </view>
+      <view class="info-item">
+        <text class="info-value">{{route.difficulty}}%</text>
+        <text class="info-label">难度指数</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 难度说明 -->
+  <view class="section card">
+    <text class="section-title">🔋 难度评估</text>
+    <view class="difficulty-detail">
+      <view class="difficulty-row">
+        <text class="difficulty-label">体能要求</text>
+        <view class="difficulty-bar-wrap">
+          <view class="difficulty-bar">
+            <view class="difficulty-fill" style="width: {{route.staminaRequired}}%"></view>
+          </view>
+          <text class="difficulty-text">{{route.staminaLevel}}</text>
+        </view>
+      </view>
+      <view class="difficulty-row">
+        <text class="difficulty-label">技术要求</text>
+        <view class="difficulty-bar-wrap">
+          <view class="difficulty-bar">
+            <view class="difficulty-fill" style="width: {{route.techRequired}}%"></view>
+          </view>
+          <text class="difficulty-text">{{route.techLevel}}</text>
+        </view>
+      </view>
+      <view class="difficulty-row">
+        <text class="difficulty-label">风险等级</text>
+        <view class="difficulty-bar-wrap">
+          <view class="difficulty-bar risk">
+            <view class="difficulty-fill" style="width: {{route.riskLevel}}%"></view>
+          </view>
+          <text class="difficulty-text">{{route.riskText}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 路线描述 -->
+  <view class="section card">
+    <text class="section-title">📝 路线描述</text>
+    <text class="route-desc">{{route.description}}</text>
+    
+    <view class="feature-list" wx:if="{{route.features}}">
+      <text class="feature-title">🌟 路线特色</text>
+      <view class="feature-item" wx:for="{{route.features}}" wx:key="*this">
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 交通信息 -->
+  <view class="section card">
+    <text class="section-title">🚌 交通方式</text>
+    <view class="transport-item">
+      <text class="transport-type">自驾</text>
+      <text class="transport-info">{{route.transport.car}}</text>
+    </view>
+    <view class="transport-item">
+      <text class="transport-type">公交</text>
+      <text class="transport-info">{{route.transport.bus}}</text>
+    </view>
+  </view>
+
+  <!-- 注意事项 -->
+  <view class="section card">
+    <text class="section-title">⚠️ 注意事项</text>
+    <view class="notice-item" wx:for="{{route.notices}}" wx:key="*this">
+      <text class="notice-bullet">•</text>
+      <text class="notice-text">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar">
+    <view class="action-btn favorite" bindtap="toggleFavorite">
+      <text>{{isFavorite ? '❤️' : '🤍'}}</text>
+      <text class="action-text">收藏</text>
+    </view>
+    <view class="action-btn share" bindtap="shareRoute">
+      <text>📤</text>
+      <text class="action-text">分享</text>
+    </view>
+    <view class="start-btn" bindtap="startRoute">
+      <text>开始徒步</text>
+    </view>
+  </view>
+</view>

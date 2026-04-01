@@ -1,0 +1,293 @@
+/* pages/tracking/tracking.wxss */
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 地图 */
+.tracking-map {
+  flex: 1;
+  width: 100%;
+}
+
+.map-controls {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.control-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.15);
+}
+
+.control-icon {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+/* 状态栏 */
+.status-bar {
+  display: flex;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  padding: 32rpx 48rpx;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.status-item {
+  text-align: center;
+  color: #fff;
+}
+
+.status-value {
+  display: block;
+  font-size: 56rpx;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.status-label {
+  font-size: 24rpx;
+  opacity: 0.85;
+}
+
+.status-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 数据面板 */
+.data-panel {
+  background: #fff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 24rpx 32rpx;
+  box-shadow: 0 -8rpx 32rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.data-panel.expanded {
+  padding-bottom: 48rpx;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.panel-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.panel-toggle {
+  font-size: 26rpx;
+  color: var(--primary-color);
+}
+
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24rpx;
+}
+
+.data-item {
+  text-align: center;
+  padding: 20rpx;
+  background: var(--bg-color);
+  border-radius: 16rpx;
+}
+
+.data-value {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 8rpx;
+}
+
+.data-label {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+}
+
+/* 控制栏 */
+.control-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 48rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  border-top: 1rpx solid var(--border-color);
+}
+
+.control-left,
+.control-right {
+  width: 160rpx;
+}
+
+.lock-btn,
+.photo-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.lock-btn text:first-child,
+.photo-btn text:first-child {
+  font-size: 40rpx;
+}
+
+.lock-text,
+.photo-text {
+  font-size: 22rpx;
+  color: var(--text-secondary);
+}
+
+.lock-btn.locked {
+  opacity: 0.6;
+}
+
+/* 主按钮 */
+.control-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.main-btn {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8rpx 32rpx rgba(45, 90, 39, 0.4);
+  transition: all 0.3s ease;
+}
+
+.main-btn:active {
+  transform: scale(0.95);
+}
+
+.main-btn.tracking {
+  background: linear-gradient(135deg, var(--danger-color), #E57373);
+  box-shadow: 0 8rpx 32rpx rgba(244, 67, 54, 0.4);
+}
+
+.btn-inner {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.main-btn.tracking .btn-text {
+  color: var(--danger-color);
+}
+
+/* 弹窗 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 80%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 48rpx;
+  text-align: center;
+}
+
+.modal-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 32rpx;
+  display: block;
+}
+
+.modal-stats {
+  display: flex;
+  justify-content: center;
+  gap: 64rpx;
+  margin-bottom: 48rpx;
+}
+
+.modal-stat {
+  text-align: center;
+}
+
+.modal-value {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 8rpx;
+}
+
+.modal-label {
+  font-size: 24rpx;
+  color: var(--text-secondary);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 28rpx;
+  border-radius: 48rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.modal-btn.cancel {
+  background: var(--bg-color);
+  color: var(--text-secondary);
+}
+
+.modal-btn.confirm {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: #fff;
+}

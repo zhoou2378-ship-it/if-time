@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/routes/routes",
+    "pages/route-detail/route-detail",
+    "pages/tracking/tracking",
+    "pages/weather/weather",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2D5A27",
+    "navigationBarTitleText": "山野周末",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2D5A27",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab/tab-home.svg",
+        "selectedIconPath": "images/tab/tab-home-active.svg"
+      },
+      {
+        "pagePath": "pages/routes/routes",
+        "text": "路线",
+        "iconPath": "images/tab/tab-route.svg",
+        "selectedIconPath": "images/tab/tab-route-active.svg"
+      },
+      {
+        "pagePath": "pages/weather/weather",
+        "text": "天气",
+        "iconPath": "images/tab/tab-weather.svg",
+        "selectedIconPath": "images/tab/tab-weather-active.svg"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab/tab-profile.svg",
+        "selectedIconPath": "images/tab/tab-profile-active.svg"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
