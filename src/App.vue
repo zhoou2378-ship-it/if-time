@@ -109,11 +109,16 @@
 
 <script setup>
 import { onMounted } from 'vue';
+import {
+  collectFragment,
+  getLocalStorage,
+  loadCollectionState,
+  saveCollectionState,
+} from './collection-state.mjs';
 
 onMounted(() => {
   
         const DAILY_LIMIT = 9;
-        const DAILY_RESET_LIMIT = 3;
         const memoryScenes = {
           childhood: {
             label: '放学后的房间',
@@ -278,19 +283,8 @@ onMounted(() => {
           },
         };
   
-        const state = {
-          drawsLeft: DAILY_LIMIT,
-          resetsLeft: DAILY_RESET_LIMIT,
-          selectedAlbumId: 'teen',
-          found: Object.fromEntries(albums.map((album) => [album.id, []])),
-          orderFound: Object.fromEntries(albums.map((album) => [album.id, []])),
-          currentClues: {},
-          pendingPickup: null,
-          completed: [],
-          lastCompletedId: '',
-          sheetOpen: false,
-          deskLayer: 0,
-        };
+        const storage = getLocalStorage(window);
+        const state = loadCollectionState(storage, albums);
   
         const el = (id) => document.getElementById(id);
         const selectedAlbum = () => albums.find((album) => album.id === state.selectedAlbumId) || albums[0];
@@ -432,19 +426,12 @@ onMounted(() => {
           const { itemName, duplicate } = state.pendingPickup;
           const fragment = fragmentByName(album, itemName) || randomFragment(album).fragment;
 
-          const alreadyCollected = state.found[album.id].includes(itemName);
-          if (!alreadyCollected && fragmentByName(album, itemName)) {
-            state.found[album.id].push(itemName);
-          }
+          const collection = collectFragment(state, album, itemName, currentClues(album));
 
-          if (!duplicate && !state.orderFound[album.id].includes(itemName)) {
-            state.orderFound[album.id].push(itemName);
-          }
-
-          revealFragment(album, fragment, duplicate || alreadyCollected);
+          revealFragment(album, fragment, duplicate || collection.alreadyCollected);
           clearPendingPickup();
 
-          if (state.orderFound[album.id].length >= currentClues(album).length) {
+          if (collection.orderComplete) {
             completeOrder(album);
           }
 
@@ -621,6 +608,7 @@ onMounted(() => {
           renderAlbumStrip();
           renderOrder();
           renderAlbumDetail();
+          saveCollectionState(storage, state);
         }
   
         el('drawButton').addEventListener('click', drawFragment);
