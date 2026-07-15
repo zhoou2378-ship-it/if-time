@@ -4,6 +4,7 @@ import test from 'node:test';
 import {
   collectFragment,
   createCollectionState,
+  getAlbumProgress,
   getLocalStorage,
   getLocalDayKey,
   loadCollectionState,
@@ -269,6 +270,27 @@ test('collects five unique teen fragments and reports album completion', () => {
     orderComplete: true,
     albumComplete: true,
   });
+});
+
+test('caps album milestone progress without removing collected inventory', () => {
+  const state = createCollectionState(albums);
+  const teen = {
+    ...albums.find((album) => album.id === 'teen'),
+    fragments: [
+      { name: 'A' },
+      { name: 'B' },
+      { name: 'C' },
+      { name: 'D' },
+      { name: 'E' },
+      { name: 'F' },
+      { name: 'G' },
+      { name: 'H' },
+    ],
+  };
+  state.found.teen = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+  assert.equal(getAlbumProgress(state, teen), 5);
+  assert.deepEqual(state.found.teen, ['A', 'B', 'C', 'D', 'E', 'F']);
 });
 
 test('does not increment progress when a fragment is collected twice', () => {

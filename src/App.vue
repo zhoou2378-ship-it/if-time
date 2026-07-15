@@ -111,6 +111,7 @@
 import { onMounted } from 'vue';
 import {
   collectFragment,
+  getAlbumProgress,
   getLocalStorage,
   loadCollectionState,
   saveCollectionState,
@@ -289,7 +290,7 @@ onMounted(() => {
         const el = (id) => document.getElementById(id);
         const selectedAlbum = () => albums.find((album) => album.id === state.selectedAlbumId) || albums[0];
         const selectedOrder = () => oldItemPools[state.selectedAlbumId] || oldItemPools.teen;
-        const albumProgress = (album) => state.found[album.id].length;
+        const albumProgress = (album) => getAlbumProgress(state, album);
         const isComplete = (album) => albumProgress(album) >= album.required;
         const fragmentByName = (album, name) => album.fragments.find((fragment) => fragment.name === name);
         const poolForAlbum = (album) => oldItemPools[album.id] || oldItemPools.teen;

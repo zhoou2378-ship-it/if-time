@@ -52,3 +52,23 @@ test('delegates pickup collection while retaining reveal and order completion', 
     'pickup should not duplicate collection mutation inline',
   );
 });
+
+test('uses capped album progress for milestone presentation and completion', () => {
+  assert.ok(
+    source.includes('getAlbumProgress,'),
+    'App.vue should import the pure album progress helper',
+  );
+  assert.ok(
+    source.includes('const albumProgress = (album) => getAlbumProgress(state, album);'),
+    'all album milestone consumers should share the capped progress projection',
+  );
+  assert.ok(
+    source.includes('const isComplete = (album) => albumProgress(album) >= album.required;'),
+    'album completion should derive from capped milestone progress',
+  );
+  assert.equal(
+    source.includes('const albumProgress = (album) => state.found[album.id].length;'),
+    false,
+    'App.vue should not expose raw inventory length as milestone progress',
+  );
+});

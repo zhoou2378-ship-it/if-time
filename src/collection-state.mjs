@@ -46,6 +46,12 @@ export function createCollectionState(albums, limits = {}) {
   };
 }
 
+export function getAlbumProgress(state, album) {
+  const required = Number.isInteger(album.required) ? Math.max(0, album.required) : 0;
+  const found = validUniqueNames(state.found?.[album.id], album);
+  return Math.min(found.length, required);
+}
+
 export function getLocalStorage(browser) {
   try {
     return browser?.localStorage || null;
